@@ -45,7 +45,7 @@
     "markdown-it-implicit-figures": "^0.11.0",
     "markdown-it-gridtables":  "^0.6.0",
     "markdown-it-sub": "^1.0.0",
-    "markdown-it-sup":  "^1.0.0",
+    "markdown-it-sup":  "^2.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-texmath":  "^1.0.0",
     "katex": "^0.16.7",
