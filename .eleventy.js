@@ -80,9 +80,7 @@ module.exports = function(eleventyConfig) {
 
   // Add a filter using the Config API
   eleventyConfig.addWatchTarget("./src/scss/");
-  eleventyConfig.setBrowserSyncConfig({
-    reloadDelay: 400
-  });
+  // eleventyConfig.setBrowserSyncConfig has been removed in Eleventy v3
 
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {
