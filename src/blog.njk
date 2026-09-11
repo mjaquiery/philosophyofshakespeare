@@ -3,6 +3,11 @@
     title: "All Essays",
     layout: "layouts/default.njk",
     footer: "footer1",
+    eleventyComputed: {
+      prefacePost: (data) => {
+        return (data.collections.posts || []).find((post) => post.filePathStem === "/posts/Preface");
+      }
+    },
     pagination: {
       data: "collections.posts",
       size: 50,
@@ -10,10 +15,13 @@
       alias: "posts",
       before: function (paginationData, fullData) {
         // `fullData` is new in v1.0.1 and contains the full Data Cascade thus far
+        // The preface is pinned to the top of every page instead, so it is excluded here
 
-        return paginationData.sort((a, b) => {
-          return new Date(b.date) - new Date(a.date);
-        });
+        return paginationData
+          .filter((post) => post.filePathStem !== "/posts/Preface")
+          .sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+          });
       }
     }
 }
@@ -26,6 +34,8 @@
     </div>
     <div class="col-11 col-lg-10 col-xl-6">
       <div class="row border-bottom">
+        {% from "snippets/postrow.njk" import postRow %}
+        {% if prefacePost %}{{ postRow(prefacePost) }}{% endif %}
         {% include "snippets/loop.njk" %}
       </div>
       {% include 'snippets/loopprevnext.njk' %}
